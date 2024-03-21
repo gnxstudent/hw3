@@ -66,8 +66,11 @@ void dealloc(Node* head)
 //   Add any helper functions or
 //   function object struct declarations
 // -----------------------------------------------
-
-
+struct IsOdd {
+    bool operator()(int value) {
+        return value % 2 != 0;
+    }
+};
 
 
 
@@ -86,7 +89,13 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+    IsOdd isOdd;
+    Node* filteredList = llfilter(head, isOdd);
 
+    cout << "Filtered list (odd numbers removed): ";
+    print(filteredList);
+
+    dealloc(filteredList);
 
 
     
